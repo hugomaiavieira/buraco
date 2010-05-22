@@ -3,8 +3,8 @@ from freshen import *
 from player import Player
 from buraco.buraco import Buraco
 
-@Given(r'I have (\d+) players, with names (.*)')
-def given_i_have_a_player_named(number, names):
+@Given(r'I have the players (.*)')
+def given_i_have_the_players(names):
     names = names.split(', ')
     scc.players = []
     for name in names:
