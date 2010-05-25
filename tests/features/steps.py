@@ -1,4 +1,5 @@
 from freshen import *
+from should_dsl import *
 
 from player import Player
 from buraco.buraco import Buraco
@@ -13,8 +14,10 @@ def given_i_have_the_players(names):
 @When(r'I initialize the game')
 def when_i_initialize_the_game():
     scc.buraco = Buraco(scc.players)
-
-@Then(r'the cards are distributed')
-def then_each_player_has_11_cards():
     scc.buraco.distribute_cards()
+
+@Then(r'each player has 11 cards')
+def then_each_player_has_11_cards():
+    for player in scc.players:
+        len(player.cards) |should_be.equal_to| 11
 

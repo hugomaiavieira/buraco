@@ -16,4 +16,6 @@ class BuracoSpec(unittest.TestCase):
 
     def it_should_distribute_11_cards_to_each_player(self):
         self.buraco.distribute_cards()
+        for player in self.players:
+            len(player.cards) |should_be.equal_to| 11
 
