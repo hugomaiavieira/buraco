@@ -2,7 +2,7 @@ import unittest
 from should_dsl import *
 
 from player import Player
-from buraco import Buraco
+from buraco import *
 
 class BuracoSpec(unittest.TestCase):
 
@@ -18,4 +18,9 @@ class BuracoSpec(unittest.TestCase):
         self.buraco.distribute_cards()
         for player in self.players:
             len(player.cards) |should| be(11)
+
+    def it_should_raise_exception_when_number_of_players_is_invalid(self):
+        players = [Player("Hugo")]
+        (lambda: Buraco(players)) |should| throw(InvalidNumberOfPlayers)
+#        self.assertRaises(InvalidNumberOfPlayers, Buraco, players)
 

@@ -3,23 +3,24 @@ Feature: Initialize the game
     As a game
     I want to initalize the game
 
-    Scenario: start with 2 players
-        Given I have the players Hugo, Pedro
+    Scenario Outline: start with valid number of players
+        Given I have the players <names>
         When I initialize the game
         Then each player has 11 cards
 
-    Scenario: start with 3 players
-        Given I have the players Hugo, Pedro, Dudu
-        When I initialize the game
-        Then each player has 11 cards
+    Examples:
+    |names                 |
+    |Hugo, Pedro           |
+    |Hugo, Pedro, Dudu     |
+    |Hugo, Pedro, Dudu, Max|
 
-    Scenario: start with 4 players
-        Given I have the players Hugo, Pedro, Dudu, Max
-        When I initialize the game
-        Then each player has 11 cards
-
-    Scenario: do not start with 1 player
-        Given I have the players Hugo
+    Scenario Outline: do not start with invalid number of players
+        Given I have the players <names>
         When I initialize the game
         Then the game cannot be started
+
+    Examples:
+    |names                          |
+    |Hugo                           |
+    |Hugo, Pedro, Dudu, Max, Rodrigo|
 
