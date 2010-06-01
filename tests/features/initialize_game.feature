@@ -1,12 +1,13 @@
-Feature: Initialize the game
-    In order to start the game
-    As a game
-    I want to initalize the game
+Feature: Initialize the buraco
+    In order to start playing
+    As a buraco
+    I want to initalize it
 
     Scenario Outline: start with valid number of players
         Given I have the players <names>
         When I initialize the game
         Then each player has 11 cards
+        And the game has 2 pots with 11 cards each
 
     Examples:
     |names                 |

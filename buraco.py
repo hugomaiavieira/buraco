@@ -1,5 +1,8 @@
 from deck import Deck
 
+TOP=1
+BOTTOM=0
+
 class InvalidNumberOfPlayers(Exception):
     def __init__(self):
         self.msg = "The number of players must be 2, 3 or 4"
@@ -10,8 +13,13 @@ class Buraco(object):
             raise InvalidNumberOfPlayers()
         self.players = _players
         self.deck = Deck()
+        self.pots = []
 
-    def distribute_cards(self):
+        self.__deal_cards__()
+
+    def __deal_cards__(self):
+        self.pots.append(self.deck.get_cards(11))
+        self.pots.append(self.deck.get_cards(11))
         for times in range(11):
             for player in self.players:
                 player.receive_card(self.deck.get_cards(1))

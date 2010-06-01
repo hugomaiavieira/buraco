@@ -12,9 +12,9 @@ class PlayerSpec(unittest.TestCase):
         player = Player("Ronaldo")
         card = Dummy()
         player.receive_card(card)
-        len(player.cards) |should| be(1)
+        len(player.hand) |should| be(1)
 
         for times in range(10):
             player.receive_card(card)
-        len(player.cards) |should| be(11)
+        len(player.hand) |should| be(11)
 
