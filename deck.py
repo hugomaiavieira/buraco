@@ -15,7 +15,13 @@ class Deck(object):
     def get_cards(self, number):
         cards = []
         for times in range(number):
-            card = self.cards.pop()
-            cards.append(card)
+            if len(self.cards) > 0:
+                card = self.cards.pop()
+                cards.append(card)
+            else:
+                return None
         return cards
+
+    def __len__(self):
+        return len(self.cards)
 

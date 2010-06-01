@@ -8,12 +8,13 @@ Feature: Initialize the buraco
         When I initialize the game
         Then each player has 11 cards
         And the game has 2 pots with 11 cards each
+        And the game has the stack with <ramaining_cards>
 
     Examples:
-    |names                 |
-    |Hugo, Pedro           |
-    |Hugo, Pedro, Dudu     |
-    |Hugo, Pedro, Dudu, Max|
+    |names                 |ramaining_cards |
+    |Hugo, Pedro           |60              |
+    |Hugo, Pedro, Dudu     |49              |
+    |Hugo, Pedro, Dudu, Max|38              |
 
     Scenario Outline: do not start with invalid number of players
         Given I have the players <names>
@@ -24,4 +25,5 @@ Feature: Initialize the buraco
     |names                          |
     |Hugo                           |
     |Hugo, Pedro, Dudu, Max, Rodrigo|
+stack
 

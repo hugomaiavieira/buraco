@@ -32,3 +32,8 @@ def the_game_has_2_pots_with_11_cards_each():
     for pots in scc.buraco.pots:
         len(pots) |should| equal_to(11)
 
+@Then(r'the game has the stack with (\d+)')
+def the_game_has_the_stack_with(ramaining_cards):
+    ramaining_cards = int(ramaining_cards)
+    len(scc.buraco.stack) |should| be(ramaining_cards)
+

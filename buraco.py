@@ -14,6 +14,7 @@ class Buraco(object):
         self.players = _players
         self.deck = Deck()
         self.pots = []
+        self.stack = []
 
         self.__deal_cards__()
 
@@ -23,4 +24,10 @@ class Buraco(object):
         for times in range(11):
             for player in self.players:
                 player.receive_card(self.deck.get_cards(1))
+        card = self.deck.get_cards(1)
+        while(card != None):
+            self.stack.append(card)
+            card = self.deck.get_cards(1)
+
+        len(self.deck)
 
