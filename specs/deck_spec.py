@@ -9,20 +9,20 @@ class DeckSpec(unittest.TestCase):
         self.deck = Deck()
 
     def it_initially_should_have_104_cards(self):
-        len(self.deck.cards) |should| be(104)
+        self.deck |should| have(104).cards
 
     def it_should_return_n_card(self):
         self.deck.get_cards(1)
-        len(self.deck.cards) |should_be| be(103)
+        self.deck |should| have(103).cards
 
         self.deck.get_cards(17)
-        len(self.deck.cards) |should| be(86)
+        self.deck |should| have(86).cards
 
         self.deck.get_cards(87) |should| be(None)
 
     def it_should_return_the_number_os_cards(self):
-        len(self.deck) |should| be(104)
+        self.deck |should| have(104).cards
 
         self.deck.get_cards(5)
-        len(self.deck) |should| be(99)
+        self.deck |should| have(99).cards
 

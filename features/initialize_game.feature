@@ -25,5 +25,4 @@ Feature: Initialize the buraco
     |names                          |
     |Hugo                           |
     |Hugo, Pedro, Dudu, Max, Rodrigo|
-stack
 

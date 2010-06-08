@@ -1,8 +1,5 @@
 from deck import Deck
 
-TOP=1
-BOTTOM=0
-
 class InvalidNumberOfPlayers(Exception):
     def __init__(self):
         self.msg = "The number of players must be 2, 3 or 4"
