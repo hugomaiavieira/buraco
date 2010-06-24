@@ -1,3 +1,5 @@
+#coding:utf-8
+
 import unittest
 from should_dsl import *
 
@@ -7,7 +9,9 @@ from buraco import *
 class BuracoSpec(unittest.TestCase):
 
     def setUp(self):
-        self.players = [Player("Hugo"), Player("Pedro")]
+        self.hugo = Player("Hugo")
+        self.pedro = Player("Pedro")
+        self.players = [self.hugo, self.pedro]
         self.buraco = Buraco(self.players)
 
     def it_should_initialize_the_game_with_given_players(self):
@@ -26,4 +30,22 @@ class BuracoSpec(unittest.TestCase):
     def it_should_raise_exception_when_number_of_players_is_invalid(self):
         players = [Player("Hugo")]
         (lambda: Buraco(players)) |should| throw(InvalidNumberOfPlayers)
+
+    def it_should_let_the_players_know_that_they_belongs_to_me(self):
+        ronaldo = Player("Ronaldo")
+        ze = Player("Zé")
+        game = Buraco([ronaldo, ze])
+        ronaldo.game |should| be(game)
+
+    def it_should_pop_card_from_the_stock(self):
+        stock_length = len(self.buraco.stock)
+        card = self.buraco.pop_stock_card()
+        card |should| be_kind_of(list)
+        len(self.buraco.stock) |should| equal_to(stock_length - 1)
+
+
+    def it_should_return_the_player_of_the_current_turn(self):
+        self.buraco.current_player() |should| be(self.hugo)
+        self.hugo.draws_card()
+        self.buraco.current_player() |should| be(self.pedro)
 

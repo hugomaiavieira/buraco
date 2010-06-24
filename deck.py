@@ -22,6 +22,9 @@ class Deck(object):
                 return None
         return cards
 
+    def get_all_cards(self):
+        return self.cards
+
     def __len__(self):
         return len(self.cards)
 

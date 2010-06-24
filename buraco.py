@@ -9,22 +9,35 @@ class Buraco(object):
         if (len(_players) < 2) or (len(_players) > 4):
             raise InvalidNumberOfPlayers()
         self.players = _players
-        self.deck = Deck()
+
         self.pots = []
-        self.stack = []
+        self.stock = []
+        self.discard_pile = []
 
-        self.__deal_cards__()
+        self.let_players_know_me()
+        self._deal_cards()
+        self._current_player = self.players[0]
 
-    def __deal_cards__(self):
-        self.pots.append(self.deck.get_cards(11))
-        self.pots.append(self.deck.get_cards(11))
+    def let_players_know_me(self):
+        for player in self.players:
+            player.set_game(self)
+
+    def _deal_cards(self):
+        deck = Deck()
+
+        self.pots.append(deck.get_cards(11))
+        self.pots.append(deck.get_cards(11))
+
         for times in range(11):
             for player in self.players:
-                player.receive_card(self.deck.get_cards(1))
-        card = self.deck.get_cards(1)
-        while(card != None):
-            self.stack.append(card)
-            card = self.deck.get_cards(1)
+                player.receive_card(deck.get_cards(1))
 
-        len(self.deck)
+        self.stock = deck.get_all_cards()
+
+    def current_player(self):
+        return self._current_player
+
+    def pop_stock_card(self):
+        card = self.stock.pop()
+        return card
 

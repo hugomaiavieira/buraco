@@ -1,14 +1,14 @@
 Feature: Initialize the buraco
-    In order to start playing
     As a buraco
     I want to initalize it
+    In order to start playing
 
     Scenario Outline: start with valid number of players
         Given I have the players <names>
         When I initialize the game
         Then each player has 11 cards
         And the game has 2 pots with 11 cards each
-        And the game has the stack with <ramaining_cards>
+        And the game has the stock with <ramaining_cards>
 
     Examples:
     |names                 |ramaining_cards |

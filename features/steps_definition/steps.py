@@ -32,8 +32,8 @@ def the_game_has_2_pots_with_11_cards_each(step):
     for pots in world.buraco.pots:
         len(pots) |should| equal_to(11)
 
-@step(r'the game has the stack with (\d+)')
-def the_game_has_the_stack_with(step, ramaining_cards):
+@step(r'the game has the stock with (\d+)')
+def the_game_has_the_stock_with(step, ramaining_cards):
     ramaining_cards = int(ramaining_cards)
-    len(world.buraco.stack) |should| equal_to(ramaining_cards)
+    len(world.buraco.stock) |should| equal_to(ramaining_cards)
 
