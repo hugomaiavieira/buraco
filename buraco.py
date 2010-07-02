@@ -10,7 +10,7 @@ class Buraco(object):
             raise InvalidNumberOfPlayers()
         self.players = _players
 
-        self.pots = []
+        self.pots = [[],[]]
         self.stock = []
         self.discard_pile = []
 
@@ -25,12 +25,13 @@ class Buraco(object):
     def _deal_cards(self):
         deck = Deck()
 
-        self.pots.append(deck.get_cards(11))
-        self.pots.append(deck.get_cards(11))
-
         for times in range(11):
+
+            self.pots[0].append(deck.get_cards())
+            self.pots[1].append(deck.get_cards())
+
             for player in self.players:
-                player.receive_card(deck.get_cards(1))
+                player.receive_card(deck.get_cards())
 
         self.stock = deck.get_all_cards()
 

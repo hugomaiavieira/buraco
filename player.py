@@ -18,4 +18,10 @@ class Player(object):
         if pile == STOCK:
             card = self.game.pop_stock_card()
             self.hand.append(card)
+        elif pile == DISCARD_PILE:
+            pass
+
+    def discard(self, card):
+        self.hand.remove(card)
+        self.game.discard_pile.append(card)
 

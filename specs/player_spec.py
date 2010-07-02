@@ -5,6 +5,7 @@ from should_dsl import *
 from ludibrio import Dummy
 from player import *
 from buraco import Buraco
+from card import Card
 
 class PlayerSpec(unittest.TestCase):
 
@@ -34,7 +35,17 @@ class PlayerSpec(unittest.TestCase):
         self.hugo.draws_card(STOCK)
         self.hugo.hand |should| have(12).cards
 
-    def it_should_draw_a_card_from_the_discard_pile(self):
-        self.hugo.draws_card(DISCARD_PILE)
-        self.hugo.hand |should| have(12).cards
+#    def it_should_draw_a_card_from_the_discard_pile(self):
+#        self.hugo.draws_card(DISCARD_PILE)
+#        self.hugo.hand |should| have(12).cards
+
+    def it_should_discard_the_given_card(self):
+        card = Card('J', 'spades')
+        self.pedro.hand.append(card)
+        self.pedro.discard(card)
+        self.pedro.hand |should| have(11).cards
+        self.pedro.hand |should_not| contain(card)
+
+
+        self.pedro.discard(card) |should| throw(exception)
 

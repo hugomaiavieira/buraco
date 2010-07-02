@@ -1,4 +1,5 @@
 from random import shuffle
+from card import Card
 
 class Deck(object):
     def __init__(self):
@@ -8,19 +9,12 @@ class Deck(object):
         for suit in suits:
             for i in range(2):
                 for value in values:
-                    _cards.append([suit, value])
+                    _cards.append(Card(value, suit))
         self.cards = _cards
         shuffle(self.cards)
 
-    def get_cards(self, number):
-        cards = []
-        for times in range(number):
-            if len(self.cards) > 0:
-                card = self.cards.pop()
-                cards.append(card)
-            else:
-                return None
-        return cards
+    def get_cards(self):
+        return self.cards.pop()
 
     def get_all_cards(self):
         return self.cards

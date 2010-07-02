@@ -9,7 +9,7 @@ def given_i_am_a_player_named_group1(step, name):
     world.player = Player(name)
 
 @step(r'And I am on a game with "(.*)"')
-def and_i_am_on_a_game_with_group1(step, names):
+def and_i_am_on_a_game_with(step, names):
     names = names.split(', ')
     players = []
     for name in names:
