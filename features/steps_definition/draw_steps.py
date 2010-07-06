@@ -1,8 +1,9 @@
 from lettuce import *
 from should_dsl import *
 
-from player import Player
+from player import *
 from buraco import Buraco
+from card import Card
 
 @step(r'Given I am a player named "(.*)"')
 def given_i_am_a_player_named_group1(step, name):
@@ -19,14 +20,23 @@ def and_i_am_on_a_game_with(step, names):
 
 @step(r'And is my turn to play')
 def and_is_my_turn_to_play(step):
-    player = world.game.current_player()
-    player |should| be(world.player)
+    world.game._current_player = world.player
 
 @step(r'When I draw a card from the stock')
 def when_i_draw_a_card_from_the_stock(step):
-    pass
+    world.player.draws_card(STOCK)
 
-@step(r'Then this card should be in my Hand')
-def then_this_card_should_be_in_my_hand(step):
-    pass
+@step(r'And the discard pile has "(\d+)" cards')
+def and_the_discard_pile_has_n_cards(step, n):
+    for i in range(int(n)):
+        card = Card('J', 'spades')
+        world.game.discard_pile.append(card)
+
+@step(r'When I draw from the discard pile')
+def when_i_draw_a_card_from_the_discard_pile(step):
+    world.player.draws_card(DISCARD_PILE)
+
+@step(r'Then I should have "(\d+)" cards in my hand')
+def then_i_should_have_n_more_card_in_my_hand(step, n):
+    world.player.hand |should| have(int(n)).cards
 

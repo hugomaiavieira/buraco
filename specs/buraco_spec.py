@@ -3,7 +3,8 @@
 import unittest
 from should_dsl import *
 
-from player import Player
+from player import *
+from card import Card
 from buraco import *
 
 class BuracoSpec(unittest.TestCase):
@@ -40,12 +41,11 @@ class BuracoSpec(unittest.TestCase):
     def it_should_pop_card_from_the_stock(self):
         stock_length = len(self.buraco.stock)
         card = self.buraco.pop_stock_card()
-        card |should| be_kind_of(list)
+        card |should| be_kind_of(Card)
         len(self.buraco.stock) |should| equal_to(stock_length - 1)
-
 
     def it_should_return_the_player_of_the_current_turn(self):
         self.buraco.current_player() |should| be(self.hugo)
-        self.hugo.draws_card()
+        self.hugo.make_shot(STOCK)
         self.buraco.current_player() |should| be(self.pedro)
 

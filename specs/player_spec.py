@@ -14,6 +14,10 @@ class PlayerSpec(unittest.TestCase):
         self.pedro = Player("Pedro")
         self.game = Buraco([self.hugo, self.pedro])
 
+    def it_should_be_represented_by_his_name(self):
+        self.hugo.__str__() |should| equal_to('Player Hugo')
+        self.pedro.__str__() |should| equal_to("Player Pedro")
+
     def it_should_initialize_with_the_name(self):
         self.hugo.name |should| equal_to("Hugo")
 
@@ -35,9 +39,11 @@ class PlayerSpec(unittest.TestCase):
         self.hugo.draws_card(STOCK)
         self.hugo.hand |should| have(12).cards
 
-#    def it_should_draw_a_card_from_the_discard_pile(self):
-#        self.hugo.draws_card(DISCARD_PILE)
-#        self.hugo.hand |should| have(12).cards
+    def it_should_draw_a_card_from_the_discard_pile(self):
+        card = Card('Q', 'spades')
+        self.game.discard_pile.append(card)
+        self.hugo.draws_card(DISCARD_PILE)
+        self.hugo.hand |should| have(12).cards
 
     def it_should_discard_the_given_card(self):
         card = Card('J', 'spades')
@@ -45,7 +51,7 @@ class PlayerSpec(unittest.TestCase):
         self.pedro.discard(card)
         self.pedro.hand |should| have(11).cards
         self.pedro.hand |should_not| contain(card)
+        self.game.discard_pile |should| contain(card)
 
-
-        self.pedro.discard(card) |should| throw(exception)
+        (lambda: self.pedro.discard(card)) |should| throw(CardNotInHandError)
 

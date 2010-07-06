@@ -11,7 +11,20 @@ Buraco
     * The rest of the cards stay with the game to be bought by the players (OK)
 
 * Com o jogo em andamento:
-    * Compra de cartas do bolo
-    * Comprar da mesa
-        * Se tiver apenas uma carta, esta não poderá ser a carta descartada
+    * Compra de cartas do bolo (OK)
+    * Comprar da mesa (OK)
+        * Se tiver apenas uma carta na mesa, esta não poderá ser a carta descartada
+
+* Descartar:
+    * Jogar uma carta da sua mão na mesa.
+
+* Fazer jogada:
+
+  ! Comprar
+  ? Arriar
+    ? Bater
+      ? Bater direto
+        ? Arriar
+      ? Bater normal
+  ! Descartar
 
