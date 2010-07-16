@@ -16,7 +16,7 @@ Buraco
         * Se tiver apenas uma carta na mesa, esta não poderá ser a carta descartada
 
 * Descartar:
-    * Jogar uma carta da sua mão na mesa.
+    * Jogar uma carta da sua mão na mesa.(OK)
 
 * Fazer jogada:
 

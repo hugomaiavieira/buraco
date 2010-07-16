@@ -28,6 +28,10 @@ class Player(object):
                 self.hand.append(card)
 
     def discard(self, card):
-        self.hand.remove(card)
-        self.game.discard_pile.append(card)
+        try:
+            self.hand.remove(card)
+        except:
+            raise CardNotInHandError
+        else:
+            self.game.discard_pile.append(card)
 

@@ -53,5 +53,11 @@ class PlayerSpec(unittest.TestCase):
         self.pedro.hand |should_not| contain(card)
         self.game.discard_pile |should| contain(card)
 
+    def it_should_not_allow_user_to_discard_a_card_if_he_doesnt_have_it(self):
+        self.pedro.hand = []
+        card = Card('J', 'spades')
         (lambda: self.pedro.discard(card)) |should| throw(CardNotInHandError)
+
+    def after_discarding_the_player_should_notify_the_game_he_is_done(self):
+        pass
 

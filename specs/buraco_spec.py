@@ -45,7 +45,11 @@ class BuracoSpec(unittest.TestCase):
         len(self.buraco.stock) |should| equal_to(stock_length - 1)
 
     def it_should_return_the_player_of_the_current_turn(self):
+        self.hugo.hand = []
         self.buraco.current_player() |should| be(self.hugo)
-        self.hugo.make_shot(STOCK)
+        # shot
+        self.hugo.draws_card(STOCK)
+        self.hugo.discard(self.hugo.hand[0])
+        # after his move, the turn goes to the next player in the table
         self.buraco.current_player() |should| be(self.pedro)
 
